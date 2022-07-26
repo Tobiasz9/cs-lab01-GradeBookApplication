@@ -18,20 +18,25 @@ namespace GradeBook.GradeBooks
             {
                 throw new InvalidOperationException();
             }
-            var studentsTwentyPercent = Math.Ceiling(0.2 * Students.Count);
-            var higherAverageGradeStudents = 0;
-
+            var studentsTwentyPercent = 0.2 * Students.Count;
+            var higherAverageGradeStudents =  0;
+            var downGrade = 0;
             foreach (var student in Students)
             {
 
                 if (student.AverageGrade > averageGrade)
                 {
                     higherAverageGradeStudents++;
+                    if (higherAverageGradeStudents == studentsTwentyPercent)
+                    {
+                        downGrade++;
+                        higherAverageGradeStudents = 0;
+                    }
                 }
 
+
             }
-            var downGrade = (int)Math.Floor(higherAverageGradeStudents / studentsTwentyPercent);
-            var gradeToLetter = new List<char> { 'A', 'B','C', 'D', 'E', 'F' };
+            var gradeToLetter = new List<char> { 'A', 'B','C', 'D', 'F' };
             return gradeToLetter[downGrade];
         }
 
