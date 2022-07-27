@@ -39,7 +39,23 @@ namespace GradeBook.GradeBooks
             var gradeToLetter = new List<char> { 'A', 'B','C', 'D', 'F' };
             return gradeToLetter[downGrade];
         }
+        public override void CalculateStatistics()
 
+        {
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students.");
+                return;
+
+            }
+            else if (Students.Count >= 5)
+            {
+               
+                base.CalculateStatistics();
+                return;
+            }
+
+        }
 
     }
 }
